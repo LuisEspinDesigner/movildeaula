@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1079642436426",
+    "firebase_url": "https://smarthomepa-8f3e5-default-rtdb.firebaseio.com",
+    "project_id": "smarthomepa-8f3e5",
+    "storage_bucket": "smarthomepa-8f3e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079642436426:android:8d5dc5eabba24bf33207b3",
+        "android_client_info": {
+          "package_name": "com.example.movildeaula"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079642436426-a1ouo5afuohtvih1h4d7f6foupbqgmf7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuaFYc6JCPTLVxVZ1TquLNsl_SwtJTQGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079642436426-a1ouo5afuohtvih1h4d7f6foupbqgmf7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
