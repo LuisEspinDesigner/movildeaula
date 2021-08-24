@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callbackManager = CallbackManager.Factory.create();
-                btnFacebook.setReadPermissions("email", "public_profile");
+               // callbackManager = CallbackManager.Factory.create();
+                //btnFacebook.setReadPermissions("email", "public_profile");
             }
         });
         btnlogin = findViewById(R.id.btnlogin);
