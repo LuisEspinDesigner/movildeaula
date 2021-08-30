@@ -1,12 +1,15 @@
 package com.example.movildeaula;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,31 +25,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class principa extends AppCompatActivity {
     Toolbar toolb;
     DrawerLayout drawerLayout;
-    Button AddDevice, security;
+    Button AddDevice, security,btnState;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
+    String res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principa);
         toolb = (Toolbar) this.findViewById(R.id.toolbar);
-        AddDevice = findViewById(R.id.btnAddDivice);
-        setSupportActionBar(toolb);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_24);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        security = findViewById(R.id.texthome);
+        btnState = findViewById(R.id.textOn);
+        String usuario = getIntent().getExtras().getString("usuario");
         inicializarFirebase();
         databaseReference.child("Security").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot objShaptshot : snapshot.getChildren()) {
-                    String res= (String) objShaptshot.child("securit").getValue();
-                    System.out.println(objShaptshot);
-
+                Map<String, Object> td = (HashMap<String, Object>) snapshot.getValue();
+                if (td==null)return;
+                res=td.get("securit").toString();
+                System.out.println(res);
+                if (res.equals("True")){
+                    btnState.setBackgroundColor(Color.BLUE);
+                    btnState.setText("ON");
+                }else {
+                    btnState.setBackgroundColor(Color.RED);
+                    btnState.setText("OFF");
                 }
             }
             @Override
@@ -54,6 +63,29 @@ public class principa extends AppCompatActivity {
 
             }
         });
+        btnState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (res.equals("True")){
+                    HashMap map = new HashMap();
+                    map.put("securit", "False");
+                    databaseReference.child("Security").updateChildren(map);
+                    btnState.setBackgroundColor(Color.RED);
+                    btnState.setText("ON");
+                }else {
+                    HashMap map = new HashMap();
+                    map.put("securit", "True");
+                    databaseReference.child("Security").updateChildren(map);
+                    btnState.setBackgroundColor(Color.BLUE);
+                    btnState.setText("ON");
+                }
+            }
+        });
+        AddDevice = findViewById(R.id.btnAddDivice);
+        setSupportActionBar(toolb);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_24);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        security = findViewById(R.id.texthome);
         AddDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +96,8 @@ public class principa extends AppCompatActivity {
         security.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent security = new Intent(v.getContext(), ListaDispositivos.class);
+                Intent security = new Intent(v.getContext(), ListaDispositivos.class)
+                        .putExtra("usuario",usuario);
                 startActivity(security);
             }
         });

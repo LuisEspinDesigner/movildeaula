@@ -1,6 +1,7 @@
 package com.example.movildeaula.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movildeaula.Models.Divice;
 import com.example.movildeaula.R;
-import com.google.firebase.database.ValueEventListener;
+import com.example.movildeaula.VisualizacionDispositivo;
 
 import java.util.List;
 
@@ -47,6 +48,10 @@ public class ListDispositivos extends RecyclerView.Adapter<ListDispositivos.View
         return ListDivice.size();
     }
 
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onClick(View v) {
         if (listener != null) {
@@ -62,6 +67,13 @@ public class ListDispositivos extends RecyclerView.Adapter<ListDispositivos.View
             nombre = itemView.findViewById(R.id.txtdiviceNombre);
             mac = itemView.findViewById(R.id.txtdiviceMac);
             ubicacion = itemView.findViewById(R.id.txtdiviceUbicacion);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, VisualizacionDispositivo.class);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bindData(Divice divice) {

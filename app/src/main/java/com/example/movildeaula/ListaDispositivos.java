@@ -24,11 +24,13 @@ public class ListaDispositivos extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_dispositivos);
+        usuario = getIntent().getExtras().getString("usuario");
         inicializarFirebase();
         recyclerView = findViewById(R.id.RvListDivice);
         Listadivice();
@@ -42,7 +44,7 @@ public class ListaDispositivos extends AppCompatActivity {
     }
 
     private void Listadivice() {
-        databaseReference.child("Divice").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("User/" + usuario + "/Divice").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -52,8 +54,6 @@ public class ListaDispositivos extends AppCompatActivity {
                     listdispositivos.add(divi);
                 }
                 ejecuta();
-                //listDivi.
-
             }
 
             @Override
@@ -62,12 +62,12 @@ public class ListaDispositivos extends AppCompatActivity {
             }
         });
     }
-    private void ejecuta(){
+
+    private void ejecuta() {
         ListDispositivos listDivi = new ListDispositivos(listdispositivos, this);
         RecyclerView recyclerView = findViewById(R.id.RvListDivice);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setAdapter(listDivi);
     }
 }

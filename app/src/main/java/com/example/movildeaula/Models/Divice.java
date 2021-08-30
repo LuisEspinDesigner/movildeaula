@@ -1,32 +1,32 @@
 package com.example.movildeaula.Models;
 
 public class Divice {
-    String nombre;
-    String mac;
-    String ubicacion;
+    String Nombre;
+    String Mac;
+    String Localizacion;
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getMac() {
-        return mac;
+        return Mac;
     }
 
     public void setMac(String mac) {
-        this.mac = mac;
+        this.Mac = mac;
     }
 
     public String getUbicacion() {
-        return ubicacion;
+        return Localizacion;
     }
 
     public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+        this.Localizacion = ubicacion;
     }
 
 

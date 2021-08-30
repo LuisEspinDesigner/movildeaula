@@ -55,17 +55,16 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = usuario.getText().toString();
-                String pass = contrasenia.getText().toString();
+                String user = usuario.getText().toString().trim();
+                String pass = contrasenia.getText().toString().trim();
                if (!user.equals("") && !pass.equals("")) {
-                firebaseAuth.getInstance().signInWithEmailAndPassword(user.trim(), pass.trim())
+                firebaseAuth.getInstance().signInWithEmailAndPassword(user, pass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Log.d("Mesaje", "createUserWithEmail:success");
-                                        Intent intent = new Intent(v.getContext(), principa.class);
+                                        String[] usuario= user.split("@");
+                                        Intent intent = new Intent(v.getContext(), principa.class).putExtra("usuario",usuario[0]);
                                         startActivityForResult(intent, 0);
                                     } else {
                                         /* If sign in fails, display a message to the user.

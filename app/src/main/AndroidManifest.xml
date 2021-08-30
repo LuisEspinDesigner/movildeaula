@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovilDeAula">
-        <activity android:name=".ListaSensores"></activity>
+        <activity
+            android:name=".VisualizacionDispositivo"
+            android:exported="true" />
+        <activity android:name=".ListaSensores" />
         <activity android:name=".ListaDispositivos" />
         <activity android:name=".DiviceAdd" />
         <activity android:name=".principa" />
