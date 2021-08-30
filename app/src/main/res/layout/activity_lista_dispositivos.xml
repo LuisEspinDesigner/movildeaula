@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="210dp"
         tools:layout_editor_absoluteY="199dp"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
 </LinearLayout>
 
 </RelativeLayout>

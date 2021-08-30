@@ -45,7 +45,6 @@ public class ListaDispositivos extends AppCompatActivity {
 
     private void Listadivice() {
         databaseReference.child("User/" + usuario + "/Divice").addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listdispositivos.clear();

@@ -1,31 +1,31 @@
 package com.example.movildeaula.Models;
 
 public class Notify {
-    String mac;
-    String status;
-    String imagen;
+    String Mac;
+    String Status;
+    String Image;
 
     public String getMac() {
-        return mac;
+        return Mac;
     }
 
     public void setMac(String mac) {
-        this.mac = mac;
+        this.Mac = mac;
     }
 
     public String getStatus() {
-        return status;
+        return Status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.Status = status;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return Image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.Image = image;
     }
 }

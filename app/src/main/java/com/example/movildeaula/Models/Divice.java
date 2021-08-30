@@ -21,12 +21,12 @@ public class Divice {
         this.Mac = mac;
     }
 
-    public String getUbicacion() {
+    public String getLocalizacion() {
         return Localizacion;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.Localizacion = ubicacion;
+    public void setLocalizacion(String localizacion) {
+        this.Localizacion = localizacion;
     }
 
 

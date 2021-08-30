@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovilDeAula">
         <activity
+            android:name=".VisulaizarNotificacion"
+            android:exported="true" />
+        <activity
             android:name=".VisualizacionDispositivo"
             android:exported="true" />
         <activity android:name=".ListaSensores" />

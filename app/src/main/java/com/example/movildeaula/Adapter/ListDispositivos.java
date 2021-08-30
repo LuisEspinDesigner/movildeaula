@@ -70,7 +70,8 @@ public class ListDispositivos extends RecyclerView.Adapter<ListDispositivos.View
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, VisualizacionDispositivo.class);
+                    Intent intent = new Intent(context, VisualizacionDispositivo.class)
+                            .putExtra("NombreDivice",nombre.getText().toString());
                     context.startActivity(intent);
                 }
             });
@@ -79,7 +80,7 @@ public class ListDispositivos extends RecyclerView.Adapter<ListDispositivos.View
         public void bindData(Divice divice) {
             nombre.setText(divice.getNombre());
             mac.setText(divice.getMac());
-            ubicacion.setText(divice.getUbicacion());
+            ubicacion.setText(divice.getLocalizacion());
         }
     }
 }

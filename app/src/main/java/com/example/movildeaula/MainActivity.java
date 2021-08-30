@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     Button btnregistrar;
     Button btnlogin;
@@ -55,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = usuario.getText().toString().trim();
-                String pass = contrasenia.getText().toString().trim();
+                String user = usuario.getText().toString().toLowerCase().trim();
+                String pass = contrasenia.getText().toString().toLowerCase().trim();
                if (!user.equals("") && !pass.equals("")) {
                 firebaseAuth.getInstance().signInWithEmailAndPassword(user, pass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

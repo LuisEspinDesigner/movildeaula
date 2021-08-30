@@ -34,23 +34,23 @@ public class principa extends AppCompatActivity {
     Button AddDevice, security,btnState;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String res;
+    String res,usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principa);
         toolb = (Toolbar) this.findViewById(R.id.toolbar);
         btnState = findViewById(R.id.textOn);
-        String usuario = getIntent().getExtras().getString("usuario");
+         usuario = getIntent().getExtras().getString("usuario");
         inicializarFirebase();
-        databaseReference.child("Security").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("User/"+usuario+"/Security").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Map<String, Object> td = (HashMap<String, Object>) snapshot.getValue();
                 if (td==null)return;
                 res=td.get("securit").toString();
                 System.out.println(res);
-                if (res.equals("True")){
+                if (!res.equals("True")){
                     btnState.setBackgroundColor(Color.BLUE);
                     btnState.setText("ON");
                 }else {
@@ -66,16 +66,16 @@ public class principa extends AppCompatActivity {
         btnState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (res.equals("True")){
+                if (!res.equals("True")){
                     HashMap map = new HashMap();
-                    map.put("securit", "False");
-                    databaseReference.child("Security").updateChildren(map);
+                    map.put("securit", "True");
+                    databaseReference.child("User/"+usuario+"/Security").updateChildren(map);
                     btnState.setBackgroundColor(Color.RED);
                     btnState.setText("ON");
                 }else {
                     HashMap map = new HashMap();
-                    map.put("securit", "True");
-                    databaseReference.child("Security").updateChildren(map);
+                    map.put("securit", "False");
+                    databaseReference.child("User/"+usuario+"/Security").updateChildren(map);
                     btnState.setBackgroundColor(Color.BLUE);
                     btnState.setText("ON");
                 }
